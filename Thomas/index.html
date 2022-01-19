@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+<style>
+
+div{
+    width: 200px;
+    margin: auto;
+    margin-top: 50px;
+    
+}
+#form>input{
+    margin-top: 10px;
+}
+
+</style>    
+
+</head>
+<body>
+
+<div id='addProducts'>
+    <form id='form' onsubmit="addProduct(event)">
+        <input type="number" id='idnum' placeholder="enter id">
+        <input type="text" id="name" placeholder="name">
+        <input type="text" id="url" placeholder="Main url">
+                 <input type="text" id="img1" placeholder="url1">
+                 <input type="text" id="img2" placeholder="url2">
+                 <input type="text" id="img3" placeholder="url3">
+                 <input type="text" id="img4" placeholder="url4">
+        <input type="text" id="des" placeholder="Description">
+        <input type="text" id="price" placeholder="price">
+        <input type="text" id="rating" placeholder="rating">
+        <input type="submit">
+    </form>
+</div>
+
+</body>
+</html>
+<script>
+
+
+async function addProduct(e){
+
+  
+     
+    try{
+        let form = document.querySelector("#form")
+        e.preventDefault();
+        let dataObj = {
+            id : form.idnum.value,
+            name : form.name.value,
+            img :form.url.value,
+            subimg:
+          {
+              img1:form.img1.value,
+              img2:form.img2.value,
+              img3:form.img3.value,
+              img4:form.img4.value
+          },
+            des:form.des.value,
+            price:form.price.value,
+            rating:form.rating.value
+        }
+
+        dataObj = JSON.stringify(dataObj);
+        console.log(dataObj)
+    
+        let response = await fetch(`http://192.168.101.190:4200/api/RandomProducts`,{
+            method:"POST",
+            body:dataObj,
+            headers:{
+                "Content-Type":"application/json"
+            },
+        })
+        let data = await response.json();
+        
+        alert("Product is added")
+
+    }
+    catch(err){
+        console.log("Error",err)
+    }
+}
+
+
+</script>
