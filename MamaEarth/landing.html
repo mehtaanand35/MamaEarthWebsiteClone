@@ -161,6 +161,20 @@
     <div class="content">
         <h1>Deals of the day</h1>
         <p style="font-size: 36px;">Hurry! <span style="color:rgb(16, 127, 172);">Offer</span> Will Expire In</p>
+       <table id="countdown">
+           <tr>
+               <td id="days">14</td>
+               <td id="hours">04</td>
+               <td id="minutes">12</td>
+               <td id="seconds">22</td>
+           </tr>
+           <tr>
+               <td><p>DAY</p></td>
+               <td> <p>HR</p></td>
+               <td><p>MIN</p></td>
+               <td><p>SEC</p></td>
+           </tr>
+       </table>
         <button>VIEW ALL</button>
     </div>
     <div class="product">
@@ -220,3 +234,38 @@
   
 </body>
 </html>
+<script type="text/javascript">
+function countdown(){
+    var now = new Date();
+    var eventDate  = new Date(2022, 01, 02);
+
+    var currentTime = now.getTime();
+    var eventTime = eventDate.getTime();
+
+    var remTime = eventTime-currentTime;
+
+    var s = Math.floor(remTime/1000);
+    var m = Math.floor(s/60);
+    var h = Math.floor(m/60);
+    var d = Math.floor(h/24);
+
+    h%=24;
+    m%=60;
+    s%=60;
+
+    h=(h<10)?+h:h;
+    m=(h<10)?+m:m;
+    s=(h<10)?+s:s;
+
+    document.getElementById("days").textContent=d;
+    document.getElementById("days").innerText=d;
+
+    document.getElementById("hours").textContent=h;
+    document.getElementById("minutes").textContent=m;
+    document.getElementById("seconds").textContent=s;
+
+    setTimeout(countdown, 1000);
+}
+countdown();
+
+</script>
