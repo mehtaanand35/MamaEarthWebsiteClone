@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<style>
+
+#main{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+   grid-gap: 15px;
+   padding: 10px;
+   justify-content: space-around;
+}
+#main>div{
+    width: 90%;
+    height: 640px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-family: 'Roboto', sans-serif;
+}
+#main>div:hover{
+    background-color: rgb(247, 245, 245);
+    cursor: pointer;
+}
+
+#main>div>img{
+    width: 100%;
+    height: 65%;
+}
+
+</style>
+</head>
+<body>
+   <div id="main">
+
+   </div> 
+</body>
+</html>
+<script>
+
+getData()
+
+async function getData(){
+
+    try{
+
+        let response = await fetch ('http://192.168.101.190:4200/api/RandomProducts');
+        let data = await response.json();
+        // console.log(data);
+        append(data)
+    }
+    catch(err){
+        console.log(err,"Error");
+    }
+}
+
+function append(data){
+
+    document.querySelector("#main").innerHTML='';
+
+    data.forEach((elem) => {
+        console.log(elem)
+
+
+        let div = document.createElement("div");
+            div.addEventListener("click",function(){
+                localStorage.setItem("MEdb",JSON.stringify(elem));
+                window.location.href="viewPage.html"
+            })
+        let img1 = document.createElement("img");
+            img1.src = elem.img
+            img1.alt ="Wrong URL"
+        let name1 = document.createElement("h2");
+            name1.innerText = elem.name
+        let p = document.createElement("p");
+            p.innerText=`${elem.rating}/5`
+        let h4 = document.createElement("h4");
+            h4.innerText=`₹ ${elem.price}`
+        div.append(img1,name1,h4,p);
+        document.querySelector("#main").append(div)
+    });
+}
+</script>
