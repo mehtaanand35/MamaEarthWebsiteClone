@@ -1,0 +1,83 @@
+.payment_cont {
+    width: 80%;
+    height: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: none;
+  }
+  .cart-prod {
+    border: 1px solid lightgray;
+  }
+  .address,
+  .cart-prod {
+    height: 400px;
+  }
+  .payment-method {
+    height: 300px;
+    display: flex;
+    border: 1px solid lightgray;
+    margin-top: 5%;
+  }
+  .method {
+    border-right: 2px solid lightgray;
+    width: 35%;
+    height: 100%;
+  }
+  .pay-via {
+    width: 65%;
+    height: 100%;
+  }
+  .address > .name,
+  .contact,
+  .city {
+    width: 100%;
+    height: 8%;
+    text-align: center;
+  }
+  #Fname,
+  #Lname,
+  #email,
+  #number {
+    width: 45%;
+    height: 82%;
+    outline: none;
+    border: 2px solid lightgray;
+    border-radius: 5%;
+  }
+  #pin,
+  #city,
+  #state {
+    width: 29%;
+    height: 82%;
+    outline: none;
+    border: 2px solid lightgray;
+    border-radius: 5%;
+  }
+  #address {
+    width: 91%;
+    margin-left: 4%;
+    height: 7%;
+    outline: none;
+    border: 2px solid lightgray;
+    border-radius: 5%;
+  }
+  .address h2 {
+    margin-left: 4%;
+  }
+  .payment-method button {
+    border: none;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10%;
+    margin-left: 2%;
+    color: gray;
+  }
+  .payment-method > .method > .card,
+  .upi,
+  .cod {
+    width: 100%;
+    height: 15%;
+  }
